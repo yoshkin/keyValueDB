@@ -29,7 +29,12 @@ map.get('key'); // 10
 swapKeyValue — полиморфная функция, она может работать с любой реализацией key-value, имеющей такой же интерфейс.
 ```js
 import InMemoryKV from '../InMemoryKV.js';
+import swapKeyValue from '../keyValueFunctions.js';
  
 const map = new InMemoryKV({ key: 10 });
-map.get('key'); // 10
+map.set('key2', 'value2');
+swapKeyValue(map);
+map.get('key'); // null
+map.get(10); // 'key'
+map.get('value2'); // 'key2'
 ```
